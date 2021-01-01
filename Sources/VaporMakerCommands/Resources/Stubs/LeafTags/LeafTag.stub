@@ -1,0 +1,10 @@
+import Vapor
+import Leaf
+
+struct {{name}}: LeafTag {
+
+    func render(_ ctx: LeafContext) throws -> LeafData {
+        // ...
+    }
+    
+}

@@ -1,0 +1,25 @@
+import Vapor
+
+struct {{name}}: Command {
+    
+    struct Signature: CommandSignature {
+        @Argument(name: "argument")
+        var argument: String
+
+        @Option(name: "option", short: "o")
+        var option: String?
+
+        @Flag(name: "flag", short: "f")
+        var flag: Bool
+    }
+
+    var help: String {
+        "Small description about what this command does."
+    }
+
+    func run(using context: CommandContext, signature: Signature) throws {
+        
+        // ...
+        
+    }
+}

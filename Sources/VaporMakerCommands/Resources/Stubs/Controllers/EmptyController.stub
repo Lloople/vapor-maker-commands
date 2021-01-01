@@ -1,0 +1,10 @@
+import Vapor
+
+struct {{name}} {
+    
+    func index(req: Request) throws -> String {
+        // ...
+        return "Hello world"
+    }
+    
+}

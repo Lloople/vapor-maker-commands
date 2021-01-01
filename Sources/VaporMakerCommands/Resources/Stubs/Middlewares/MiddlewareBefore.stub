@@ -1,0 +1,12 @@
+import Vapor
+
+struct {{name}}: Middleware {
+    
+    func respond(to request: Request, chainingTo next: Responder) -> EventLoopFuture<Response> {
+        
+        // ...
+        
+        return next.respond(to: request)
+        
+    }
+}

@@ -1,0 +1,34 @@
+import Vapor
+
+struct {{name}} {
+    
+    func index(req: Request) throws -> String {
+        // ...
+        return "Hello world"
+    }
+
+    func create(req: Request) throws -> String {
+        // ...
+        return "Hello world"
+    }
+    
+    func edit(req: Request) throws -> String {
+        // ...
+        return "Hello world"
+    }
+
+    func show(req: Request) throws -> String {
+        // ...
+        return "Hello world"
+    }
+
+    func update(req: Request) throws -> String {
+        // ...
+        return "Hello world"
+    }
+
+    func destroy(req: Request) throws -> String {
+        // ...
+        return "Hello world"
+    }
+}

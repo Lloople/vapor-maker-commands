@@ -1,0 +1,11 @@
+import Vapor
+
+struct {{name}}: Content {
+    // ...
+}
+
+extension {{name}}: Validatable {
+    static func validations(_ validations: inout Validations) {
+        // ...
+    }
+}

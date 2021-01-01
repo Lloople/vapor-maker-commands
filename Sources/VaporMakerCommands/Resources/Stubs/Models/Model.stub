@@ -1,0 +1,15 @@
+import Vapor
+
+final class {{name}}: Model {
+
+    static let schema = "{{schema}}"
+
+    @ID(key: .id)
+    var id: UUID?
+
+    init() { }
+
+    init(id: UUID? = nil) {
+        self.id = id
+    }
+}

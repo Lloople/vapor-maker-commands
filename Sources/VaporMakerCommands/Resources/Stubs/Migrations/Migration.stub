@@ -1,0 +1,13 @@
+import Vapor
+import Fluent
+
+struct {{name}}: Migration {
+    
+    func prepare(on database: Database) -> EventLoopFuture<Void> {
+        // ...
+    }
+
+    func revert(on database: Database) -> EventLoopFuture<Void> {
+        // ...
+    }
+}

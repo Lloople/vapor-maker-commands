@@ -2,7 +2,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "VaporMakerCommands",
+    name: "vapor-maker-commands",
     products: [
         .library(
             name: "VaporMakerCommands",
@@ -19,7 +19,7 @@ let package = Package(
                 .product(name:"Vapor", package: "vapor")
             ],
             resources: [
-                .copy("VaporMakerCommands/Resources")
+                .copy("Resources")
             ]
         ),
         .testTarget(

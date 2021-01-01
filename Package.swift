@@ -3,6 +3,9 @@ import PackageDescription
 
 let package = Package(
     name: "vapor-maker-commands",
+    platforms: [
+        .macOS(.v10_15)
+    ],
     products: [
         .library(
             name: "VaporMakerCommands",

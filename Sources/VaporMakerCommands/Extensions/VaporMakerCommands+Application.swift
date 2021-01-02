@@ -2,7 +2,7 @@ import Vapor
 
 extension Application {
     
-    func registerMakerCommands() {
+    public func registerMakerCommands() {
         self.commands.use(CommandMaker(), as: "make:command")
         self.commands.use(ContentMaker(), as: "make:content")
         self.commands.use(ControllerMaker(), as: "make:controller")

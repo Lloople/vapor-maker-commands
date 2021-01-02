@@ -21,21 +21,23 @@ struct MiddlewareMaker: MakerProtocol {
     
     func directory() -> String { "Middlewares" }
     
-    func createFile(writer: Writer, reader: Reader, signature: Signature) throws -> String {
-        
+    func filename(_ signature: Signature) -> String {
+        return signature.name
+    }
+    
+    func stub(_ signature: Signature) -> String {
         let type: MiddlewareType = signature.after
             ? .MiddlewareAfter
             : .MiddlewareBefore
         
-        try writer.createFile(
-            name: signature.name,
-            contents: reader.get(name: type.rawValue, replaces: ["name": signature.name])
-        )
-
-        return signature.name
+        return type.rawValue
     }
     
-    func message(signature: Signature) -> String? {
+    func replaces(_ signature: Signature) -> [String : String] {
+        return ["name": signature.name]
+    }
+    
+    func message(_ signature: Signature) -> String? {
         return "You can apply this middleware to all your routes with: \n\t`app.middleware.use(\(signature.name)())` \nor individually with: \n\t`app.group(\(signature.name)()) {`"
     }
 }

@@ -13,20 +13,22 @@ struct ModelMaker: MakerProtocol {
     
     func directory() -> String { "Models" }
     
-    func createFile(writer: Writer, reader: Reader, signature: Signature) throws -> String {
-        
-        try writer.createFile(
-            name: signature.name,
-            contents: reader.get(name: "Model", replaces: [
-                "name": signature.name,
-                "schema": signature.name.lowercased().finished(with: "s")
-            ])
-        )
-
+    func filename(_ signature: Signature) -> String {
         return signature.name
     }
     
-    func message(signature: Signature) -> String? {
+    func stub(_ signature: Signature) -> String {
+        return "Model"
+    }
+    
+    func replaces(_ signature: Signature) -> [String : String] {
+        return [
+            "name": signature.name,
+            "schema": signature.name.lowercased().finished(with: "s")
+        ]
+    }
+    
+    func message(_ signature: Signature) -> String? {
         nil
     }
 }

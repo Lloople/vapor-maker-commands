@@ -13,19 +13,19 @@ struct LeafTagMaker: MakerProtocol {
     
     func directory() -> String { "LeafTags" }
     
-    func createFile(writer: Writer, reader: Reader, signature: Signature) throws -> String {
-        
-        try writer.createFile(
-            name: signature.name,
-            contents: reader.get(name: "LeafTag", replaces: [
-                "name": signature.name,
-            ])
-        )
-
+    func filename(_ signature: Signature) -> String {
         return signature.name
     }
     
-    func message(signature: Signature) -> String? {
+    func stub(_ signature: Signature) -> String {
+        return "LeafTag"
+    }
+    
+    func replaces(_ signature: Signature) -> [String : String] {
+        return ["name": signature.name]
+    }
+
+    func message(_ signature: Signature) -> String? {
         return "Don't forget to register your tag with: \n\t`app.leaf.tags[\"now\"] = \(signature.name)()`"
     }
 }

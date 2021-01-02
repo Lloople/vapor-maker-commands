@@ -21,21 +21,23 @@ struct ContentMaker: MakerProtocol {
     
     func directory() -> String { "Contents" }
     
-    func createFile(writer: Writer, reader: Reader, signature: Signature) throws -> String {
-        
+    func filename(_ signature: Signature) -> String {
+        return signature.name
+    }
+    
+    func stub(_ signature: Signature) -> String {
         let type: ContentType = signature.withValidation
             ? .WithValidation
             : .Content
         
-        try writer.createFile(
-            name: signature.name,
-            contents: reader.get(name: type.rawValue, replaces: ["name": signature.name])
-        )
-
-        return signature.name
+        return type.rawValue
     }
     
-    func message(signature: Signature) -> String? {
+    func replaces(_ signature: Signature) -> [String : String] {
+        return ["name": signature.name]
+    }
+    
+    func message(_ signature: Signature) -> String? {
         return "You can use your content like: \n\t`let contentData = try req.content.decode(\(signature.name).self)`"
     }
 }

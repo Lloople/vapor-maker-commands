@@ -13,17 +13,19 @@ struct CommandMaker: MakerProtocol {
     
     func directory() -> String { "Commands" }
     
-    func createFile(writer: Writer, reader: Reader, signature: Signature) throws -> String {
-        
-        try writer.createFile(
-            name: signature.name,
-            contents: reader.get(name: "Command", replaces: ["name": signature.name])
-        )
-
+    func filename(_ signature: Signature) -> String {
         return signature.name
     }
     
-    func message(signature: Signature) -> String? {
+    func stub(_ signature: Signature) -> String {
+        return "Command"
+    }
+    
+    func replaces(_ signature: Signature) -> [String: String] {
+        return ["name": signature.name]
+    }
+    
+    func message(_ signature: Signature) -> String? {
         return "Don't forget to register your command with: \n\t`app.commands.use(\(signature.name)(), as: \"mycommand\")`"
     }
 }

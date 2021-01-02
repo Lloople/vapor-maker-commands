@@ -5,10 +5,15 @@ protocol MakerProtocol: Command {
     func run(using context: CommandContext, signature: Signature) throws -> Void
     
     func directory() -> String
+        
+    func message(_ signature: Signature) -> String?
     
-    func createFile(writer: Writer, reader: Reader, signature: Signature) throws -> String
+    func filename(_ signature: Signature) -> String
     
-    func message(signature: Signature) -> String?
+    func stub(_ signature: Signature) -> String
+    
+    func replaces(_ signature: Signature) -> [String:String]
+    
 }
 
 extension MakerProtocol {
@@ -17,10 +22,13 @@ extension MakerProtocol {
         let writer = Writer(path: "Sources/App/\(self.directory())")
         let reader = Reader(path: "Stubs/\(self.directory())")
         
-        let file = try self.createFile(writer: writer, reader: reader, signature: signature)
+        try writer.createFile(
+            name: self.filename(signature),
+            contents: reader.get(name: self.stub(signature), replaces: self.replaces(signature))
+        )
         
-        let message: String? = self.message(signature: signature)
+        let message: String? = self.message(signature)
         
-        context.console.print(message ?? "\(file) created successfully. Build something amazing! :)")
+        context.console.print(message ?? "\(self.filename(signature)) created successfully. Build something amazing! :)")
     }
 }

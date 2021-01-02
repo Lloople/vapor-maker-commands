@@ -21,20 +21,23 @@ struct ControllerMaker: MakerProtocol {
     
     func directory() -> String { "Controllers" }
     
-    func createFile(writer: Writer, reader: Reader, signature: Signature) throws -> String {
+    func filename(_ signature: Signature) -> String {
+        return signature.name
+    }
+    
+    func stub(_ signature: Signature) -> String {
         let type: ControllerType = signature.rest
             ? .RestController
             : .EmptyController
         
-        try writer.createFile(
-            name: signature.name,
-            contents: reader.get(name: type.rawValue, replaces: ["name": signature.name])
-        )
-
-        return signature.name
+        return type.rawValue
     }
     
-    func message(signature: Signature) -> String? {
+    func replaces(_ signature: Signature) -> [String : String] {
+        return ["name": signature.name]
+    }
+    
+    func message(_ signature: Signature) -> String? {
         return nil
     }
 }

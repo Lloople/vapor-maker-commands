@@ -6,6 +6,9 @@ struct ContentMaker: MakerProtocol {
         @Argument(name: "name")
         var name: String
         
+        @Flag(name: "force", short: "f")
+        var force: Bool
+        
         @Flag(name: "with-validation", short: "v")
         var withValidation: Bool
     }
@@ -20,6 +23,10 @@ struct ContentMaker: MakerProtocol {
     }
     
     func directory() -> String { "Contents" }
+    
+    func force(_ signature: Signature) -> Bool {
+        return signature.force
+    }
     
     func filename(_ signature: Signature) -> String {
         return signature.name

@@ -13,7 +13,7 @@ class Writer {
     }
     
     func createFile(name: String, contents: Data?) throws {
-        if !self.exists(self.path) {
+        if !self.fm.fileExists(atPath: self.path) {
             try self.fm.createDirectory(atPath: self.path, withIntermediateDirectories: true)
         }
         
@@ -24,6 +24,6 @@ class Writer {
     }
     
     func exists(_ path: String) -> Bool {
-        return self.fm.fileExists(atPath: path)
+        return self.fm.fileExists(atPath: "\(self.path)/\(path).swift")
     }
 }

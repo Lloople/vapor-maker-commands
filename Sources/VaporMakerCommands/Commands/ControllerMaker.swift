@@ -6,6 +6,9 @@ struct ControllerMaker: MakerProtocol {
         @Argument(name: "name")
         var name: String
         
+        @Flag(name: "force", short: "f")
+        var force: Bool
+        
         @Flag(name: "rest", short: "r")
         var rest: Bool
     }
@@ -20,6 +23,10 @@ struct ControllerMaker: MakerProtocol {
     }
     
     func directory() -> String { "Controllers" }
+    
+    func force(_ signature: Signature) -> Bool {
+        return signature.force
+    }
     
     func filename(_ signature: Signature) -> String {
         return signature.name

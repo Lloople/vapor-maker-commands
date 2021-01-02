@@ -1,4 +1,5 @@
 import Vapor
+import Fluent
 
 final class {{name}}: Model {
 

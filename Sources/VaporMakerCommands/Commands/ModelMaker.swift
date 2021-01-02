@@ -5,6 +5,9 @@ struct ModelMaker: MakerProtocol {
     struct Signature: CommandSignature {
         @Argument(name: "name")
         var name: String
+        
+        @Flag(name: "force", short: "f")
+        var force: Bool
     }
     
     var help: String {
@@ -12,6 +15,10 @@ struct ModelMaker: MakerProtocol {
     }
     
     func directory() -> String { "Models" }
+    
+    func force(_ signature: Signature) -> Bool {
+        return signature.force
+    }
     
     func filename(_ signature: Signature) -> String {
         return signature.name

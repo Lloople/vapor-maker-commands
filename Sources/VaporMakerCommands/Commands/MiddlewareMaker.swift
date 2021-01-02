@@ -6,6 +6,9 @@ struct MiddlewareMaker: MakerProtocol {
         @Argument(name: "name")
         var name: String
         
+        @Flag(name: "force", short: "f")
+        var force: Bool
+        
         @Flag(name: "after", short: "a")
         var after: Bool
     }
@@ -20,6 +23,10 @@ struct MiddlewareMaker: MakerProtocol {
     }
     
     func directory() -> String { "Middlewares" }
+    
+    func force(_ signature: Signature) -> Bool {
+        return signature.force
+    }
     
     func filename(_ signature: Signature) -> String {
         return signature.name

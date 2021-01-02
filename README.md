@@ -24,7 +24,7 @@ Add the adapter in your dependencies array in **Package.swift**:
 ```swift
 dependencies: [
     // ...,
-    .package(name: "VaporMakerCommands", url: "https://github.com/lloople/vapor-maker-commands.git", from: "1.0.0")
+    .package(url: "https://github.com/lloople/vapor-maker-commands.git", from: "1.0.0")
 ],
 ```
 
@@ -33,9 +33,10 @@ Also ensure you add it as a dependency to your target:
 ```swift
 targets: [
     .target(name: "App", dependencies: [
+        .product(name: "VaporMakerCommands", package:"vapor-maker-commands")
         .product(name: "Vapor", package: "vapor"), 
         // ..., 
-        "VaporMakerCommands"]),
+    ]),
     // ...
 ]
 ```
@@ -50,6 +51,8 @@ app.registerMakerCommands()
 
 ### Controllers
 
+Creates a new controller type inside `Sources/App/Controllers` path. `--restful` flag adds the default `CRUD` methods for your controller actions.
+
 ```
 vapor run make:controller UsersController
 vapor run make:controller PostsController --restful
@@ -57,11 +60,16 @@ vapor run make:controller PostsController --restful
 
 ### Commands
 
+Creates a new command type inside `Sources/App/Commands` path.
+
 ```
 vapor run make:command CreateUserCommand
 ```
 
 ### Contents
+
+Creates a new content type inside `Sources/App/Contents` path. `--with-validation` flag adds the `Validatable` extension to your content.
+
 
 ```
 vapor run make:content UserContent
@@ -70,11 +78,16 @@ vapor run make:content UserContent --with-validation
 
 ### Custom Leaf Tags
 
+Creates a new custom leaf tag type inside `Sources/App/LeafTags` path.
+
 ```
 vapor run make:leaf-tag CopyrightTag
 ```
 
 ### Middlewares
+
+Creates a new middleware type inside `Sources/App/Middlewares` path. `--after` flag will guide you on how to modify the response to be returned from your middleware.
+
 
 ```
 vapor run make:middleware UserIsAdminMiddleware
@@ -83,11 +96,15 @@ vapor run make:middleware AddUserToResponseMiddleware --after
 
 ### Migrations
 
+Creates a new migration type inside `Sources/App/Migrations` path.
+
 ```
 vapor run make:migration UsersMigration
 ```
 
 ### Models
+
+Creates a new model type inside `Sources/App/Models` path.
 
 ```
 vapor run make:model User

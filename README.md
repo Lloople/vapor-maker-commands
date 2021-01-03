@@ -41,7 +41,7 @@ targets: [
 ]
 ```
 
-Register the commands in your `configure.swift` file
+Register the commands in your `configure.swift` file:
 
 ```swift
 app.registerMakerCommands()
@@ -49,7 +49,7 @@ app.registerMakerCommands()
 
 ## Usage
 
-### Controllers
+### Controllers
 
 Creates a new controller type inside `Sources/App/Controllers` path. `--restful` flag adds the default `CRUD` methods for your controller actions.
 

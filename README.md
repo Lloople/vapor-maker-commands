@@ -51,11 +51,11 @@ app.registerMakerCommands()
 
 ### Controllers
 
-Creates a new controller type inside `Sources/App/Controllers` path. `--restful` flag adds the default `CRUD` methods for your controller actions.
+Creates a new controller type inside `Sources/App/Controllers` path. `--rest` flag adds the default `CRUD` methods for your controller actions.
 
 ```
 vapor run make:controller UsersController
-vapor run make:controller PostsController --restful
+vapor run make:controller PostsController --rest
 ```
 
 ### Commands

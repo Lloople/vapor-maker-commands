@@ -27,7 +27,10 @@ let package = Package(
         ),
         .testTarget(
             name: "VaporMakerCommandsTests",
-            dependencies: ["VaporMakerCommands"]
+            dependencies: ["VaporMakerCommands"],
+            resources: [
+                .copy("Resources")
+            ]
         ),
     ]
 )

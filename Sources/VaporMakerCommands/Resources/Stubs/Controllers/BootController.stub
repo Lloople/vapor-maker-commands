@@ -1,0 +1,55 @@
+import Vapor
+
+struct {{name}}: RouteCollection {
+    
+    func boot(routes: RoutesBuilder) throws {
+        routes.group("{{route}}") { group in
+            group.get(use: index)
+            group.get("create", use: create)
+            group.post(use: store)
+            group.group(":id") { route in
+                route.get("edit", use: edit)
+                route.get(use: show)
+                route.put(use: update)
+                route.delete(use: destroy)
+            }
+        }
+        
+    }
+    
+    func index(req: Request) throws -> String {
+        // ...
+        return "index route"
+    }
+    
+    func create(req: Request) throws -> String {
+        // ...
+        return "create route"
+    }
+    
+    func store(req: Request) throws -> String {
+        // ...
+        return "store route"
+    }
+    
+    func show(req: Request) throws -> String {
+        // ...
+        return "show route"
+    }
+    
+    func edit(req: Request) throws -> String {
+        // ...
+        return "edit route"
+    }
+    
+    func update(req: Request) throws -> String {
+        // ...
+        return "update route"
+    }
+    
+    func destroy(req: Request) throws -> String {
+        // ...
+        return "destroy route"
+    }
+    
+}

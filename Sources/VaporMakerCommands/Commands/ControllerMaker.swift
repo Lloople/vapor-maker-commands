@@ -9,8 +9,11 @@ struct ControllerMaker: MakerProtocol {
         @Flag(name: "force", short: "f")
         var force: Bool
         
-        @Flag(name: "rest", short: "r")
+        @Flag(name: "rest", short: "r", help: "Include the default restful methods: index, create, edit, show, store, update, destroy")
         var rest: Bool
+        
+        @Flag(name: "boot", short: "b", help: "Include a default boot method for routing")
+        var boot: Bool
     }
     
     var help: String {
@@ -20,6 +23,7 @@ struct ControllerMaker: MakerProtocol {
     enum ControllerType: String {
         case RestController
         case EmptyController
+        case BootController
     }
     
     func directory() -> String { "Controllers" }
@@ -33,15 +37,26 @@ struct ControllerMaker: MakerProtocol {
     }
     
     func stub(_ signature: Signature) -> String {
-        let type: ControllerType = signature.rest
-            ? .RestController
-            : .EmptyController
+        if (signature.rest) {
+            return ControllerType.RestController.rawValue
+        }
         
-        return type.rawValue
+        if (signature.boot) {
+            return ControllerType.BootController.rawValue
+        }
+        
+        return ControllerType.EmptyController.rawValue
     }
     
     func replaces(_ signature: Signature) -> [String : String] {
-        return ["name": signature.name]
+        
+        let replaces: [String:String] = ["name": signature.name]
+        
+        if (signature.boot) {
+            replaces["route"] = signature.name.lowercased().replacingOccurrences(of: "controller", with: "")
+        }
+        
+        return replaces
     }
     
     func message(_ signature: Signature) -> String? {

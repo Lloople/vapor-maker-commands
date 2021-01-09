@@ -56,6 +56,7 @@ Creates a new controller type inside `Sources/App/Controllers` path. `--rest` fl
 ```
 vapor run make:controller UsersController
 vapor run make:controller PostsController --rest
+vapor run make:controller PlayersController --boot
 ```
 
 ### Commands
@@ -109,3 +110,7 @@ Creates a new model type inside `Sources/App/Models` path.
 ```
 vapor run make:model User
 ```
+
+#### Additional info
+
+All commands come with a `--force` flag to override existing files.

@@ -2,33 +2,39 @@ import Vapor
 
 struct {{name}} {
     
+
     func index(req: Request) throws -> String {
         // ...
-        return "Hello world"
+        return "index route"
     }
 
     func create(req: Request) throws -> String {
         // ...
-        return "Hello world"
+        return "create route"
     }
     
-    func edit(req: Request) throws -> String {
+    func store(req: Request) throws -> String {
         // ...
-        return "Hello world"
+        return "store route"
     }
-
+    
     func show(req: Request) throws -> String {
         // ...
-        return "Hello world"
+        return "show route"
+    }
+
+    func edit(req: Request) throws -> String {
+        // ...
+        return "edit route"
     }
 
     func update(req: Request) throws -> String {
         // ...
-        return "Hello world"
+        return "update route"
     }
 
     func destroy(req: Request) throws -> String {
         // ...
-        return "Hello world"
+        return "destroy route"
     }
 }

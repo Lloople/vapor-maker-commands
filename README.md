@@ -24,7 +24,7 @@ Add the adapter in your dependencies array in **Package.swift**:
 ```swift
 dependencies: [
     // ...,
-    .package(url: "https://github.com/lloople/vapor-maker-commands.git", from: "1.0.0")
+    .package(url: "https://github.com/lloople/vapor-maker-commands.git", from: "1.0.0"),
 ],
 ```
 
@@ -33,7 +33,7 @@ Also ensure you add it as a dependency to your target:
 ```swift
 targets: [
     .target(name: "App", dependencies: [
-        .product(name: "VaporMakerCommands", package:"vapor-maker-commands")
+        .product(name: "VaporMakerCommands", package:"vapor-maker-commands"),
         .product(name: "Vapor", package: "vapor"), 
         // ..., 
     ]),

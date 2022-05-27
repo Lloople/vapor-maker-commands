@@ -1,13 +1,12 @@
-import Vapor
 import Fluent
 
-struct {{name}}: Migration {
+struct {{name}}: AsyncMigration {
     
-    func prepare(on database: Database) -> EventLoopFuture<Void> {
+    func prepare(on database: Database) async throws {
         // ...
     }
 
-    func revert(on database: Database) -> EventLoopFuture<Void> {
+    func revert(on database: Database) async throws {
         // ...
     }
 }
